@@ -236,6 +236,136 @@ function scrollToProjects() {
   document.getElementById('paneProjects').scrollIntoView({ behavior: 'smooth' });
 }
 
+// ── INTERACTIVE NEON PLAYGROUND LOGIC ──
+const simulatorIdeas = {
+  easy: {
+    'html-css': [
+      { title: "Landing Page for Space Tourism", desc: "Create a beautiful multi-section landing page displaying space travels using grids and parallax scrolling.", skills: "CSS Grid · Parallax · Keyframes" },
+      { title: "Recipe Card Book", desc: "Build a styled responsive digital recipe catalog with glassmorphism hover transitions.", skills: "Flexbox · Glassmorphism · Transitions" }
+    ],
+    javascript: [
+      { title: "Tip Calculator App", desc: "A simple calculator to divide bills and tips dynamically among friends.", skills: "DOM Input · Math functions" },
+      { title: "Digital Counter Board", desc: "Scorekeeper board with animation triggers and reset functions.", skills: "Event Listeners · Element styling" }
+    ],
+    api: [
+      { title: "Random Dog Fetcher", desc: "Loads random dog images from a public API with smooth fade-in animations.", skills: "fetch() · Promises · CSS opacity transitions" }
+    ]
+  },
+  medium: {
+    'html-css': [
+      { title: "Dashboard Sidebar Nav Layout", desc: "A premium dashboard landing layout with collapsible sidebars and dark/light modes.", skills: "CSS variables · Flexbox positioning" }
+    ],
+    javascript: [
+      { title: "Pomodoro Focus Timer", desc: "Build a study timer that switches between work sessions and short breaks with sound effects.", skills: "setInterval() · HTML5 Audio · Tab focus API" },
+      { title: "Interactive Canvas Paint App", desc: "Create a web-based drawing canvas where users can change colors, brush size, and clear screen.", skills: "HTML5 Canvas · Mouse coordinates tracking" }
+    ],
+    api: [
+      { title: "Crypto Currency Tracker", desc: "Fetch live prices of top cryptocurrencies and display dynamic price changes.", skills: "Coingecko API · JSON parsing · DOM insertion" },
+      { title: "Dictionary App", desc: "Fetches definitions, synonyms, and pronunciation audio files using a free dictionary API.", skills: "Async/Await · Audio play() · Fetch API" }
+    ]
+  },
+  hard: {
+    'html-css': [
+      { title: "3D Cuboid Showcase Layout", desc: "An interactive portfolio page showcasing projects on the faces of a rotatable 3D HTML/CSS cube.", skills: "3D Transforms · Perspective properties" }
+    ],
+    javascript: [
+      { title: "Virtual Music Synth Keyboard", desc: "Build a musical keyboard simulator supporting polyphonic synthesized sounds and interactive UI scales.", skills: "Web Audio API · Keydown events listener" },
+      { title: "Classic Snake Game", desc: "Create the nostalgic snake game inside HTML canvas with speed acceleration and scoreboard.", skills: "Grid math · Collision detection · Array shifts" }
+    ],
+    api: [
+      { title: "Github Profiler Dashboard", desc: "Fetch developer profile, repositories, and language statistics using Github REST API.", skills: "Async API calls · GitHub OAuth Token basics · SVGs" }
+    ]
+  }
+};
+
+let selectedDifficulty = 'easy';
+let selectedTech = 'html-css';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const diffButtons = document.querySelectorAll('#diffOptions .config-btn');
+  diffButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      diffButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedDifficulty = btn.dataset.val;
+    });
+  });
+
+  const techButtons = document.querySelectorAll('#techOptions .config-btn');
+  techButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      techButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedTech = btn.dataset.val;
+    });
+  });
+});
+
+let isRunningSimulator = false;
+function runProjectSimulator() {
+  if (isRunningSimulator) return;
+  isRunningSimulator = true;
+
+  const consoleBody = document.getElementById('consoleBody');
+  const btn = document.getElementById('btnRunSimulator');
+  btn.disabled = true;
+  btn.innerText = '⚡ Compiling...';
+
+  // Remove trailing prompt
+  const lastLine = consoleBody.querySelector('.prompt');
+  if (lastLine) lastLine.remove();
+
+  const addLine = (text, type = '') => {
+    const p = document.createElement('div');
+    p.className = `console-line ${type}`;
+    p.innerText = text;
+    consoleBody.appendChild(p);
+    consoleBody.scrollTop = consoleBody.scrollHeight;
+  };
+
+  addLine(`guest@mca-sem2:~$ ./compile-project.sh --diff=${selectedDifficulty} --tech=${selectedTech}`, 'prompt');
+
+  setTimeout(() => {
+    addLine(`[SYSTEM] Connecting to project ideas database...`, 'loading');
+    setTimeout(() => {
+      addLine(`[SUCCESS] Connection established. Status: 200 OK`, 'success');
+      setTimeout(() => {
+        addLine(`[COMPILING] Generating project structure for "${selectedDifficulty}" difficulty...`, 'loading');
+        setTimeout(() => {
+          addLine(`[COMPILING] Optimizing stack requirements for "${selectedTech}"...`, 'loading');
+          setTimeout(() => {
+            // Select random idea
+            const list = simulatorIdeas[selectedDifficulty][selectedTech];
+            const idea = list[Math.floor(Math.random() * list.length)];
+
+            // Insert custom card output
+            const card = document.createElement('div');
+            card.className = 'console-output-card';
+            card.innerHTML = `
+              <span class="console-output-tech">${selectedTech.toUpperCase()} · ${selectedDifficulty.toUpperCase()}</span>
+              <h4>💡 Project: ${idea.title}</h4>
+              <p>${idea.desc}</p>
+              <div style="font-size: 11px; color: rgba(255,255,255,0.4);"><strong>Stack:</strong> ${idea.skills}</div>
+            `;
+            consoleBody.appendChild(card);
+            consoleBody.scrollTop = consoleBody.scrollHeight;
+
+            const pPrompt = document.createElement('div');
+            pPrompt.className = 'console-line prompt';
+            pPrompt.innerHTML = 'guest@mca-sem2:~$ <span class="cursor-blink">|</span>';
+            consoleBody.appendChild(pPrompt);
+            consoleBody.scrollTop = consoleBody.scrollHeight;
+
+            isRunningSimulator = false;
+            btn.disabled = false;
+            btn.innerText = '⚡ Run Code Compiler';
+          }, 600);
+        }, 500);
+      }, 500);
+    }, 500);
+  }, 400);
+}
+
 initData();
 
 renderCards();
@@ -247,4 +377,5 @@ window.filterCards = filterCards;
 window.showStudents = showStudents;
 window.showTeams = showTeams;
 window.scrollToProjects = scrollToProjects;
+window.runProjectSimulator = runProjectSimulator;
 
