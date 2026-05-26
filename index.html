@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 Beginner Projects — HTML · CSS · JavaScript</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">🚀 Beginner Projects Guide</div>
+  <h1>
+    <span>15</span> Projects to Build<br>
+    with <em>HTML · CSS · JS</em>
+  </h1>
+  <p class="hero-sub">
+    Handpicked projects for beginners. Each one teaches real skills you'll use every day as a web developer.
+  </p>
+  <div class="pills">
+    <span class="pill html">HTML5</span>
+    <span class="pill css">CSS3</span>
+    <span class="pill js">JavaScript</span>
+    <span class="pill api">APIs</span>
+  </div>
+  <div class="dl-wrap">
+    <button class="btn-dl" onclick="scrollToProjects()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      Browse Projects
+    </button>
+    <button class="btn-dl btn-outline" onclick="showStudents()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      Students
+    </button>
+    <button class="btn-dl btn-outline" onclick="showTeams()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 2v9M8 5h8"/>
+      </svg>
+      Teams
+    </button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item"><div class="stat-num">15</div><div class="stat-lbl">Projects</div></div>
+  <div class="stat-item"><div class="stat-num">3+</div><div class="stat-lbl">Tech Stacks</div></div>
+  <div class="stat-item"><div class="stat-num">20</div><div class="stat-lbl">Students</div></div>
+  <div class="stat-item"><div class="stat-num">10</div><div class="stat-lbl">Teams</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-lbl">Free & Open</div></div>
+  <div class="stat-item"><div class="stat-num">0</div><div class="stat-lbl">Prerequisites</div></div>
+</div>
+
+<!-- MAIN -->
+<main class="main" id="projects">
+  <!-- View Toggle -->
+  <div class="view-toggle">
+    <button class="toggle-btn active" id="toggleProjectsBtn" onclick="switchMainView('projects')">
+      📁 Projects (15)
+    </button>
+    <button class="toggle-btn" id="toggleStudentsBtn" onclick="switchMainView('students')">
+      🎓 Students & Teams
+    </button>
+  </div>
+
+  <!-- PROJECTS SECTION PANE -->
+  <div id="paneProjects">
+    <div class="section-heading">All Projects</div>
+
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterCards('all', this)">All (15)</button>
+      <button class="filter-btn" onclick="filterCards('html', this)">HTML</button>
+      <button class="filter-btn" onclick="filterCards('css', this)">CSS</button>
+      <button class="filter-btn" onclick="filterCards('js', this)">JavaScript</button>
+      <button class="filter-btn" onclick="filterCards('api', this)">API</button>
+    </div>
+
+    <div class="grid" id="grid">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+
+  <!-- STUDENTS & TEAMS SECTION PANE -->
+  <div id="paneStudentsAndTeams" class="hidden">
+    <div class="section-heading">Students & Teams Directory</div>
+
+    <div class="sub-toggle">
+      <button class="sub-toggle-btn active" id="subTabStudents" onclick="switchSubView('students')">Students (20)</button>
+      <button class="sub-toggle-btn" id="subTabTeams" onclick="switchSubView('teams')">Teams (10)</button>
+    </div>
+
+    <!-- Students Grid -->
+    <div class="sub-pane active" id="subPaneStudents">
+      <div class="students-grid" id="studentListContainer">
+        <!-- Student Cards injected by JS -->
+      </div>
+    </div>
+
+    <!-- Teams Grid -->
+    <div class="sub-pane hidden" id="subPaneTeams">
+      <div class="teams-grid" id="teamListContainer">
+        <!-- Team Cards injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div class="cta">
+    <h2>Ready to start building? 🎯</h2>
+    <p>Download the full PDF guide with all 15 projects, tech stacks, and learning roadmap.</p>
+    <div class="dl-wrap">
+      <a href="15_beginner_projects.pdf" download class="btn-dl" onclick="showToast()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download PDF — Free
+      </a>
+    </div>
+  </div>
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-dot"></div>
+  PDF download started! 🎉
+</div>
+
+
+
+<script src="project.js?v=3"></script>
+<script src="students.js?v=3"></script>
+<script src="script.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+const studentsData = [
+  {"id": 1, "name": "Aarav Sharma", "gender": "Male", "teamName": "Cyber Knights", "course": "MCA", "semester": "Sem-2"},
+  {"id": 2, "name": "Aditi Patel", "gender": "Female", "teamName": "Cyber Knights", "course": "MCA", "semester": "Sem-2"},
+  {"id": 3, "name": "Arjun Verma", "gender": "Male", "teamName": "Code Ninjas", "course": "MCA", "semester": "Sem-2"},
+  {"id": 4, "name": "Diya Iyer", "gender": "Female", "teamName": "Code Ninjas", "course": "MCA", "semester": "Sem-2"},
+  {"id": 5, "name": "Ishaan Gupta", "gender": "Male", "teamName": "Neon Coders", "course": "MCA", "semester": "Sem-2"},
+  {"id": 6, "name": "Kabir Malhotra", "gender": "Male", "teamName": "Neon Coders", "course": "MCA", "semester": "Sem-2"},
+  {"id": 7, "name": "Meera Nair", "gender": "Female", "teamName": "Pixel Pioneers", "course": "MCA", "semester": "Sem-2"},
+  {"id": 8, "name": "Rohan Sen", "gender": "Male", "teamName": "Pixel Pioneers", "course": "MCA", "semester": "Sem-2"},
+  {"id": 9, "name": "Vivaan Joshi", "gender": "Male", "teamName": "Digital Nomads", "course": "MCA", "semester": "Sem-2"},
+  {"id": 10, "name": "Dev Mukherjee", "gender": "Male", "teamName": "Digital Nomads", "course": "MCA", "semester": "Sem-2"},
+  {"id": 11, "name": "Krish Choudhury", "gender": "Male", "teamName": "Syntax Errors", "course": "MCA", "semester": "Sem-2"},
+  {"id": 12, "name": "Siddharth Roy", "gender": "Male", "teamName": "Syntax Errors", "course": "MCA", "semester": "Sem-2"},
+  {"id": 13, "name": "Yash Banerjee", "gender": "Male", "teamName": "Byte Me", "course": "MCA", "semester": "Sem-2"},
+  {"id": 14, "name": "Aditya Saxena", "gender": "Male", "teamName": "Byte Me", "course": "MCA", "semester": "Sem-2"},
+  {"id": 15, "name": "Amit Sharma", "gender": "Male", "teamName": "Web Wizards", "course": "MCA", "semester": "Sem-2"},
+  {"id": 16, "name": "Deepak Verma", "gender": "Male", "teamName": "Web Wizards", "course": "MCA", "semester": "Sem-2"},
+  {"id": 17, "name": "Manish Gupta", "gender": "Male", "teamName": "Tech Titans", "course": "MCA", "semester": "Sem-2"},
+  {"id": 18, "name": "Gaurav Malhotra", "gender": "Male", "teamName": "Tech Titans", "course": "MCA", "semester": "Sem-2"},
+  {"id": 19, "name": "Vikram Nair", "gender": "Male", "teamName": "Data Miners", "course": "MCA", "semester": "Sem-2"},
+  {"id": 20, "name": "Rahul Sen", "gender": "Male", "teamName": "Data Miners", "course": "MCA", "semester": "Sem-2"}
+];
